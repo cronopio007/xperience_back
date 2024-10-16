@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "store",
     "category",
-    "accounts",
+    #"accounts",
     "carts",
 
 ]
@@ -76,7 +76,7 @@ WSGI_APPLICATION = "xperience.wsgi.application"
 
 
 # agregar el modelo de usuarios para que se logeen
-AUTH_USER_MODEL = 'accounts.Account'
+#AUTH_USER_MODEL = 'accounts.Account'
 
 
 # Database
