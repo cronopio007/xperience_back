@@ -1,2 +1,4 @@
 edg_env/Scripts/activate
 
+superuser: edgde
+password: 1991
