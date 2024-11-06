@@ -8,8 +8,8 @@ from .models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('product_name','price', 'stock', 'category','modified_date')
+    list_display = ('product_name','price_public', 'stock', 'category','modified_date')
     prepopulated_fields= {'slug':('product_name',)}
-
+    readonly_fields = ('price_public',)
 
 admin.site.register(Product, ProductAdmin)
