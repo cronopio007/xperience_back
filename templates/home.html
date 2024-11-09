@@ -100,145 +100,95 @@
   <!--  ///////////////////////////////////////////   header %%%%%%%//////////////////////////////////////-->
   
   <main>
-      <section id="offers" class="mt-5 main_0 contenido">
-          <h2>Nuestras ofertas</h2>
-          <div class="row div_text_ofertas ">
-              <h5 id="texto-ofertas">Agrega todas las aventuras a tu carrito y arma tu aventura. Usa nuestro asistente de I.A.  <i class="fa-solid fa-robot"></i> para armar tu paquete</h5>
-                  <div class="agente">
-                         <button class="robot btn " href="#">
-                          <p>try Wayki IA <i class="fa-solid fa-robot"></i> </p>
-  
-                         </button> 
-                  </div>
-          </div>
-          <div class="row">
-              <div class="categoria_travel">
-                  <h3 id="subtitulos">Aventura y naturaleza</h3>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img src="{% static 'img/colores7.jpg' %}" class="card-img-top img-fluid" alt="Oferta 1">
-                      <div class="card-body">
-                          <h5 class="card-title">Montaña de 7 colores</h5>
-                          <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                               Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                                Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                          <a href="detalle_destino.html" class="btn btn-primary">Ver detalles</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img src="img/laguna-humantay.jpg" class="card-img-top img-fluid" alt="Oferta 2">
-                      <div class="card-body">
-                          <h5 class="card-title"> Laguna de Humantay </h5>
-                          <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                              Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                               Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                          <a href="#" class="btn btn-primary">Ver detalles</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img src="img/camino-inca.jpg" class="card-img-top img-fluid" alt="Oferta 3">
-                      <div class="card-body">
-                          <h5 class="card-title">Camino inca | Machupicchu </h5>
-                          <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                              Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                               Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                          <a href="#" class="btn btn-primary">Ver detalles</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
+    <section id="offers" class="mt-5 main_0 contenido flex flex-col items-center">
+        <h2 class="text-center">Nuestras ofertas</h2>
+        
+        <div class="div_text_ofertas text-center">
+            <h5 id="texto-ofertas">
+                Agrega todas las aventuras a tu carrito y arma tu aventura. Usa nuestro asistente de I.A. 
+                <i class="fa-solid fa-robot"></i> para armar tu paquete
+            </h5>
+            <div class="agente mt-4">
+                <button class="robot btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    <p>Try Wayki IA <i class="fa-solid fa-robot"></i></p>
+                </button>
+            </div>
+        </div>
+
+        <div class="w-full text-center mt-6 mb-6">
+            <h3 id="subtitulos" class="text-xl font-semibold">Aventura y naturaleza</h3>
+        </div>
+        
+        <!-- Aquí aplicamos d-flex y justify-content-center -->
+        <div class="row d-flex justify-content-center mx-auto">
+            {% for product in products %}
+                {% if product.category.category_name == 'ciudad' %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card bg-white shadow-md rounded-lg overflow-hidden max-w-xs">
+                            <img src="{{ product.images.url }}" class="card-img-top" alt="Oferta 1">
+                            <div class="p-4">
+                                <h5 class="text-lg font-semibold">{{ product.title }}</h5>
+                                <p class="text-gray-600">{{ product.description|truncatechars:200 }}</p>
+                                <a href="detalle_destino.html" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
+                                    Ver detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
   <!--  ///////////////   segunda row  del main  /////////////////////-->
   
-          <div class="row">
-              <div class="categoria_travel">
-                  <h3 id="subtitulos">En la ciudad</h3>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img src="img/museos.jpg" class="card-img-top img-fluid" alt="Oferta 1">
-                      <div class="card-body">
-                          <h5 class="card-title">Museos</h5>
-                          <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                               Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                                Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                          <a href="#" class="btn btn-primary">Ver detalles</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img src="img/plaza-de-armas-cusco.jpg" class="card-img-top img-fluid" alt="Oferta 2">
-                      <div class="card-body">
-                          <h5 class="card-title">City tour </h5>
-                          <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                              Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                               Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                          <a href="#" class="btn btn-primary">Ver detalles</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img src="img/qoricancha.jpg" class="card-img-top img-fluid" alt="Oferta 3">
-                      <div class="card-body">
-                          <h5 class="card-title">Conoce las iglesias coloniales </h5>
-                          <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                              Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                               Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                          <a href="#" class="btn btn-primary">Ver detalles</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-  
+
+        <div class="w-full text-center mt-6 mb-6">
+            <h3 id="subtitulos" class="text-xl font-semibold">Valle sagrado</h3>
+        </div>
+
+        <!-- Aquí aplicamos d-flex y justify-content-center -->
+        <div class="row d-flex justify-content-center mx-auto">
+            {% for product in products %}
+                {% if product.category.category_name == 'valleSagrado' %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card bg-white shadow-md rounded-lg overflow-hidden max-w-xs">
+                            <img src="{{ product.images.url }}" class="card-img-top" alt="Oferta 1">
+                            <div class="p-4">
+                                <h5 class="text-lg font-semibold">{{ product.title }}</h5>
+                                <p class="text-gray-600">{{ product.description|truncatechars:200 }}</p>
+                                <a href="detalle_destino.html" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
+                                    Ver detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
   <!--  ///////////////   tercera row  del main  /////////////////////-->
   
-  <div class="row">
-      <div class="categoria_travel">
-          <h3 id="subtitulos">Comida y entretenimiento </h3>
-      </div>
-      <div class="col-md-4 mb-4">
-          <div class="card">
-              <img src="img/disco.jpg" class="card-img-top img-fluid" alt="Oferta 1">
-              <div class="card-body">
-                  <h5 class="card-title">Discotecas y fiestas </h5>
-                  <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                       Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                        Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                  <a href="#" class="btn btn-primary">Ver detalles</a>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-4 mb-4">
-          <div class="card">
-              <img src="img/tocada.jpg" class="card-img-top img-fluid" alt="Oferta 2">
-              <div class="card-body">
-                  <h5 class="card-title">Musica en vivo </h5>
-                  <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                       Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                  <a href="#" class="btn btn-primary">Ver detalles</a>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-4 mb-4">
-          <div class="card">
-              <img src="img/restaurante.png" class="card-img-top img-fluid" alt="Oferta 3">
-              <div class="card-body">
-                  <h5 class="card-title">Bares y restaurantes </h5>
-                  <p class="card-text">Descripción de la oferta: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Libero corrupti ex eveniet quo. Delectus eaque dicta voluptate sed ea. Molestiae, repellat ex.
-                       Est neque, quibusdam eligendi eum expedita eos iusto. </p>
-                  <a href="#" class="btn btn-primary">Ver detalles</a>
-              </div>
-          </div>
-      </div>
-  </div>
+  <div class="w-full text-center mt-6 mb-6">
+    <h3 id="subtitulos" class="text-xl font-semibold">Montaña</h3>
+</div>
+
+<!-- Aquí aplicamos d-flex y justify-content-center -->
+<div class="row d-flex justify-content-center mx-auto">
+    {% for product in products %}
+        {% if product.category.category_name == 'montaña' %}
+            <div class="col-md-4 mb-4">
+                <div class="card bg-white shadow-md rounded-lg overflow-hidden max-w-xs">
+                    <img src="{{ product.images.url }}" class="card-img-top" alt="Oferta 1">
+                    <div class="p-4">
+                        <h5 class="text-lg font-semibold">{{ product.title }}</h5>
+                        <p class="text-gray-600">{{ product.description|truncatechars:200 }}</p>
+                        <a href="detalle_destino.html" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
+                            Ver detalles
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
   
   
   
