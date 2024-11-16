@@ -515,3 +515,19 @@ footer .container{
   font-weight: bold; /* Texto en negrita */
   margin-bottom: 0.75rem; /* Espacio debajo del título */
 }
+
+
+
+
+
+/*-----------      login &&&&&&&&&&&&&&&&&&&&&&&   */
+
+.img_log img {
+  height: 100%; /* La imagen ocupará todo el alto del contenedor */
+  object-fit: cover; /* Ajusta el contenido sin deformarlo */
+}
+
+.formulario {
+  background-color: var(--blanco); /* Fondo blanco para el formulario */
+}
+

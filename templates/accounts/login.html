@@ -1,52 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <!-- ========================= SECTION CONTENT ========================= -->
-<section class="flex items-center justify-center min-h-screen bg-gray-100">
+<section class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
 
-    <!-- ============================ COMPONENT LOGIN   ================================= -->
-    <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h4 class="text-2xl font-semibold text-center text-gray-700 mb-6">Sign in</h4>
+    <div class="container">
+        <div class="row bg-white shadow rounded overflow-hidden">
 
-       <div class="card-body  card_login">
-         <!-- Muestra alertas si están definidas -->
-         {% include 'includes/alerts.html' %}
+            <!-- Sidebar con la imagen -->
+            <div class="col-md-6 p-0">
+                <img src="{% static 'img/intipunku.jpg' %}" alt="Side Image" class="img-fluid h-100 w-100">
+            </div>
 
-         <form action="{% url 'login' %}" method="POST">
-             {% csrf_token %}
- 
-             <!-- Campo de email -->
-             <div class="mb-4">
-                 <label for="email" class="block text-gray-700">Email Address</label>
-                 <input type="email" name="email" id="email" placeholder="Email Address"
-                        class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-             </div>
- 
-             <!-- Campo de contraseña -->
-             <div class="mb-4">
-                 <label for="password" class="block text-gray-700">Password</label>
-                 <input type="password" name="password" id="password" placeholder="Password"
-                        class="w-full px-4 py-2 mt-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-             </div>
- 
-             <!-- Enlace para recuperar contraseña -->
-             <div class="flex justify-end mb-4">
-                 <a href="#" class="text-sm text-blue-500 hover:underline">Forgot password?</a>
-             </div>
- 
-             <!-- Botón de login -->
-             <div class="mb-6">
-                 <button type="submit" class="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition duration-200">Login</button>
-             </div>
-         </form>
+            <!-- Formulario de login -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center p-5">
+                <div class="w-100" style="max-width: 400px;">
+                    <h4 class="text-center mb-4">Sign in</h4>
 
+                    <!-- Muestra alertas si están definidas -->
+                    {% include 'includes/alerts.html' %}
 
-       </div>
+                    <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+
+                        <!-- Campo de email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
+                        </div>
+
+                        <!-- Campo de contraseña -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        </div>
+
+                        <!-- Enlace para recuperar contraseña -->
+                        <div class="text-end mb-3">
+                            <a href="#" class="text-decoration-none">Forgot password?</a>
+                        </div>
+
+                        <!-- Botón de login -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        <p class="mt-4 text-center">Don't have an account? <a href="{% url 'register' %}" class="text-primary">Registrate</a></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- Enlace para registrarse -->
-    <p class="mt-4 text-center text-gray-600">Don't have an account? <a href="{% url 'register' %}" class="text-blue-500 hover:underline">Sign up</a></p>
+
 </section>
 
 {% endblock %}
