@@ -4,7 +4,7 @@ from store.models import Product
 
 # importar las categeorias
 from category.models import Category
-#from carts.models import CartItem
+from carts.models import CartItem
 
 
 
