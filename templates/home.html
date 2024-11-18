@@ -128,8 +128,9 @@
                             <img src="{{ product.images.url }}" class="card-img-top" alt="Oferta 1">
                             <div class="p-4">
                                 <h5 class="text-lg font-semibold">{{ product.title }}</h5>
-                                <p class="text-gray-600">{{ product.description|truncatechars:200 }}</p>
-                                <a href="detalle_destino.html" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
+                         
+                                <p class="text-gray-600">{{ product.description|truncatechars:100 }}</p>
+                                <a href="{{ product.get_url }}" class="mt-4 inline-block  bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
                                     Ver detalles
                                 </a>
                             </div>

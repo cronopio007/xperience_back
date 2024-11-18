@@ -16,7 +16,7 @@
             {% if 'search' in request.path %}
             <h2 class="title-page">Resultado de busqueda</h2>
             {% else %}
-            <h2 class="title-page">Our Store</h2>
+            <h2 class="title-page"> </h2>
             {% endif %}
             
         </div> <!-- container //  -->
@@ -26,16 +26,17 @@
     <div class="container">
     
     <div class="row">
-        <aside class="col-md-3">
+<aside class="col-md-3">
             
-    <div class="card">
+    <div class="card-body">
         <article class="filter-group">
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
                     <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Categories</h6>
+                    <h6 class="title">Categorias</h6>
                 </a>
             </header>
+
             <div class="filter-content collapse show" id="collapse_1" style="">
                 <div class="card-body">
                     
@@ -49,33 +50,34 @@
                 </div> <!-- card-body.// -->
             </div>
         </article> <!-- filter-group  .// -->
+
         <article class="filter-group">
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
                     <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Sizes </h6>
+                    <h6 class="title">Servicios </h6>
                 </a>
             </header>
             <div class="filter-content collapse show" id="collapse_4" style="">
                 <div class="card-body">
                   <label class="checkbox-btn">
                     <input type="checkbox">
-                    <span class="btn btn-light"> XS </span>
+                    <span class="btn btn-light"> Transporte </span>
                   </label>
     
                   <label class="checkbox-btn">
                     <input type="checkbox">
-                    <span class="btn btn-light"> SM </span>
+                    <span class="btn btn-light"> Hoteles </span>
                   </label>
     
                   <label class="checkbox-btn">
                     <input type="checkbox">
-                    <span class="btn btn-light"> LG </span>
+                    <span class="btn btn-light"> Restaurantes </span>
                   </label>
     
                   <label class="checkbox-btn">
                     <input type="checkbox">
-                    <span class="btn btn-light"> XXL </span>
+                    <span class="btn btn-light"> bares y discotecas </span>
                   </label>
             </div><!-- card-body.// -->
             </div>
@@ -125,24 +127,59 @@
         
     </div> <!-- card.// -->
     
-        </aside> <!-- col.// -->
-        <main class="col-md-9">
+</aside> <!-- col.// -->
+<main class="col-md-9">
+
+    <form action="{% url 'search' %}" class="search" method= 'GET'>
+        <div class="input-group w-100">
+            <input type="text" class="form-control" style="width:60%;" placeholder="Search" name='keyword'>
+            
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+        </div>
+    </form> <!-- search-wrap .end// -->
     
-    <header class="border-bottom mb-4 pb-3">
+    <header class="border-bottom mb-4 pb-3 mt-5">
             <div class="form-inline">
                 <span class="mr-md-auto">found <b> {{product_count}} </b></span>
+                <p> {{products}} </p>
                 
             </div>
     </header><!-- sect-heading -->
 
     <!-- contenido   --> 
-    <div class="row">
-        <div>
-            <h4> existo!</h4>
-        </div>
 
+        <div class="row">
+            {% if products %}
+            {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card bg-white shadow-md rounded-lg overflow-hidden max-w-xs">
+                    <img src="{{ product.images.url }}" class="card-img-top" alt="Oferta 1">
+                    <div class="p-4">
+                        <h5 class="text-lg font-semibold">{{ product.title }}</h5>
+                        <p class="text-gray-600">{{ product.description|truncatechars:200 }}</p>
+                        <a href="{{ product.get_url }}" class="mt-4 inline-block  bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
+                            Ver detalles
+                        </a>
+                        <div class="precios border-2">
+                            <h6 id="precio">s/. {{ product.price_public }}</h6>
+                            <p>Por persona</p>
+                        </div>
 
-    </div>
+                   
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+            <div>
+                <h2>No hay productos que coincidan con su búsqueda</h2>
+            </div>
+        {% endif %}
+        </div> <!-- row end.// -->
 
 
 

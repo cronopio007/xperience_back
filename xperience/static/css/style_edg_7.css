@@ -537,8 +537,14 @@ footer .container{
 
 /* ----------------------   STORE   --------------------------------------*/
 
- h5 {
+ h6 {
   color: var(--rojo2) !important;
-  background-color: #00cc23;
+  font-size: 1.5rem;
   font-weight: 500;
 }
+
+
+
+
+/* ----------------------   detalle   --------------------------------------*/
+

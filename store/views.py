@@ -53,7 +53,7 @@ def product_detail(request, category_slug, product_slug):
         single_product = Product.objects.get(category__slug= category_slug, slug= product_slug)
         # revisar si el item existe en el carrito
         ## el __ es para llamar al card_id de la llave primaria 
-        in_cart = CartItem.objects.filter(cart__cart_id = _cart_id(request), product = single_product).exists()
+        #   in_cart = CartItem.objects.filter(cart__cart_id = _cart_id(request), product = single_product).exists()
         #return HttpResponse(in_cart)
 
     except Exception as e:
@@ -61,7 +61,7 @@ def product_detail(request, category_slug, product_slug):
      
     context = {
         'single_product': single_product,
-        'in_cart': in_cart,
+        # 'in_cart': in_cart,
     }
 
     return render(request, 'store/product_detail.html', context)
