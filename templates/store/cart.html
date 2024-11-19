@@ -7,7 +7,15 @@
     <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y bg bodyCarrito">
 <div class="container">
+    {% if not cart_items %}
+    <h2 class="text-center"> Tu carrito de compras esta vacio </h2>
+    <br>
+    <div class="text-center">
 
+        <a href="{% url 'store'  %}" class="btn btn-primary">Continuar comprando</a>
+    </div>
+
+    {% else %}
     <!-- ============================ COMPONENT 1 ================================= -->
     <div class="row">
         <aside class="col-lg-9">
@@ -90,7 +98,7 @@
         </aside> <!-- col.// -->
     </div> <!-- row.// -->
     <!-- ============================ COMPONENT 1 END .// ================================= -->
-
+    {% endif %}
 </div> <!-- container .// -->
 </section>
 
