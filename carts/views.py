@@ -14,68 +14,34 @@ def _cart_id(request):
     return cart
 
 def add_cart(request, product_id):
-    product = Product.objects.get(id=product_id)
-    product_variation = []
+    # Obtener el producto por ID
+    product = get_object_or_404(Product, id=product_id)
 
-    
+    # Obtener o crear el carrito
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
         cart = Cart.objects.create(
-            cart_id = _cart_id(request)
+            cart_id=_cart_id(request)
         )
     cart.save()
 
-    is_cart_item_exists = CartItem.objects.filter(product=product, cart= cart).exists()
+    # Verificar si el producto ya existe en el carrito
+    is_cart_item_exists = CartItem.objects.filter(product=product, cart=cart).exists()
     if is_cart_item_exists:
-
-        cart_item = CartItem.objects.filter(product = product,  cart = cart)
-
-        # variaciones existentes  -> database
-        # current variations -> product variation
-        # item_id -> database
-        ex_var_list = []
-        id = []
-        for item in cart_item:
-            existing_variation = item.variations.all()
-            ex_var_list.append(list(existing_variation))
-            id.append(item.id)
-
-        if product_variation in ex_var_list:
-            # incrementar la cantidad en 1
-            index = ex_var_list.index(product_variation)
-            item_id = id[index]
-            item = CartItem.objects.get(product = product, id = item_id)
-            item.quantity += 1
-            item.save()
-
-        else:
-            # crear un nuevo cart_item
-
-            item = CartItem.objects.create(product = product, quantity = 1, cart= cart)
-            if len(product_variation ) > 0:
-                item.variations.clear()
-                
-                item.variations.add(*product_variation)
-            #cart_item.quantity += 1
-            item.save()
-
+        # Incrementar la cantidad del producto existente
+        cart_item = CartItem.objects.get(product=product, cart=cart)
+        cart_item.quantity += 1
+        cart_item.save()
     else:
-            item = CartItem.objects.create(
-                product = product,
-                quantity = 1,
-                cart = cart,
-            )
-
-            if len(product_variation) > 0:
-                item.variations.clear()
-      
-                item.variations.add(*product_variation)
-            item.save()    
-
+        # Crear un nuevo elemento en el carrito con cantidad 1
+        CartItem.objects.create(
+            product=product,
+            quantity=1,
+            cart=cart
+        )
 
     return redirect('cart')
-
 
 
 
